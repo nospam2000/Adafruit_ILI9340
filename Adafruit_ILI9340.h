@@ -14,6 +14,8 @@
   MIT license, all text above must be included in any redistribution
  ****************************************************/
 
+#define __ARDUINO_X86__
+
 #ifndef _ADAFRUIT_ILI9340H_
 #define _ADAFRUIT_ILI9340H_
 
@@ -26,15 +28,14 @@
 #include <Adafruit_GFX.h>
 
 #if defined(__SAM3X8E__)
-  #include <include/pio.h>
+#include <include/pio.h>
   #define PROGMEM
   #define pgm_read_byte(addr) (*(const unsigned char *)(addr))
   #define pgm_read_word(addr) (*(const unsigned short *)(addr))
   typedef unsigned char prog_uchar;
-#elif defined(__AVR__)
+#endif
+#ifdef __AVR__
   #include <avr/pgmspace.h>
-#elif defined(ESP8266)
-  #include <pgmspace.h>
 #endif
 
 
@@ -171,7 +172,7 @@ class Adafruit_ILI9340 : public Adafruit_GFX {
   uint32_t  _cs, _dc, _rst, _mosi, _miso, _sclk,
             mosipinmask, clkpinmask, cspinmask, dcpinmask;
 #endif //  #if defined(__SAM3X8E__)
-#if (defined(__arm__) && defined(CORE_TEENSY)) || defined(ESP8266)
+#if (defined(__arm__) && defined(CORE_TEENSY)) || defined(__ARDUINO_X86__)
   volatile uint8_t *mosiport, *clkport, *dcport, *rsport, *csport;
   uint8_t  _cs, _dc, _rst, _mosi, _miso, _sclk,
            mosipinmask, clkpinmask, cspinmask, dcpinmask;
