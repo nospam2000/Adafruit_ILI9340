@@ -14,8 +14,6 @@
   MIT license, all text above must be included in any redistribution
  ****************************************************/
 
-#define __ARDUINO_X86__
-
 #ifndef _ADAFRUIT_ILI9340H_
 #define _ADAFRUIT_ILI9340H_
 
